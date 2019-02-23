@@ -14,7 +14,7 @@ PRODUCT_PACKAGES += \
 
 # Default ringtone
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.config.ringtone=Pyxis.ogg
+    ro.config.ringtone=LuisWuff.ogg
 
 # Tethering - allow without requiring a provisioning app
 # (for devices that check this)

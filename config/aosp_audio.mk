@@ -193,6 +193,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ringtones/ogg/Themos.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Themos.ogg \
     $(LOCAL_PATH)/ringtones/ogg/UrsaMinor.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/UrsaMinor.ogg \
     $(LOCAL_PATH)/ringtones/ogg/Zeta.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Zeta.ogg \
+    $(LOCAL_PATH)/ringtones/ogg/LuisWuff.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/LuisWuff.ogg \
     $(LOCAL_PATH)/ringtones/Testudo.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Testudo.ogg \
     $(LOCAL_PATH)/ringtones/Vespa.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Vespa.ogg
 

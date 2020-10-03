@@ -118,7 +118,7 @@ endif
 ifeq ($(HOST_OS),darwin)
   KERNEL_MAKE_FLAGS += HOSTCFLAGS="-I$(BUILD_TOP)/external/elfutils/libelf -I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib"
 else
-  KERNEL_MAKE_FLAGS += HOSTCFLAGS="-I/usr/include -I/usr/include/x86_64-linux-gnu -L/usr/lib/x86_64-linux-gnu -L/usr/lib64"
+  KERNEL_MAKE_FLAGS += CPATH="/usr/include:/usr/include/x86_64-linux-gnu" HOSTCFLAGS="-L/usr/lib/x86_64-linux-gnu -L/usr/lib64"
 endif
 
 ifneq ($(TARGET_KERNEL_ADDITIONAL_FLAGS),)
@@ -131,10 +131,8 @@ TOOLS_PATH_OVERRIDE := \
     PERL5LIB=$(BUILD_TOP)/prebuilts/tools-lineage/common/perl-base
 
 # Set DTBO image locations so the build system knows to build them
-ifeq ($(TARGET_NEEDS_DTBOIMAGE),true)
-BOARD_PREBUILT_DTBOIMAGE ?= $(PRODUCT_OUT)/dtbo/arch/$(KERNEL_ARCH)/boot/dtbo.img
-else ifeq ($(BOARD_KERNEL_SEPARATED_DTBO),true)
-BOARD_PREBUILT_DTBOIMAGE ?= $(PRODUCT_OUT)/dtbo-pre.img
+ifeq (true,$(filter true, $(TARGET_NEEDS_DTBOIMAGE) $(BOARD_KERNEL_SEPARATED_DTBO)))
+BOARD_PREBUILT_DTBOIMAGE ?= $(TARGET_OUT_INTERMEDIATES)/DTBO_OBJ/arch/$(KERNEL_ARCH)/boot/dtbo.img
 endif
 
 # Set use the full path to the make command

@@ -33,7 +33,7 @@ PRODUCT_PACKAGES += \
     ThemePicker \
     OmniJaws \
     OmniStyle \
-    Longshot
+    StitchImage
 
 # Fonts
 PRODUCT_PACKAGES += \
@@ -53,12 +53,15 @@ PRODUCT_PACKAGES += \
     GrandHotelFont \
     LatoFont \
     LGSmartGothicFont \
+    LinotteFont \
     NokiaPureFont \
     NunitoFont \
     OneplusSlateFont \
+    OswaldFont \
     QuandoFont \
     RedressedFont \
     ReemKufiFont \
+    RobotoCondensedFont \
     RosemaryFont \
     RubikFont \
     SamsungOneFont \
@@ -125,3 +128,28 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SystemAmoledBlack \
     SystemCharcoalBlack
+
+# Switch Themes
+PRODUCT_PACKAGES += \
+    ContainedSwitch \
+    MD2Switch \
+    NarrowSwitch \
+    OnePlusSwitch \
+    RetroSwitch \
+    StockSwitch \
+    TelegramSwitch
+
+# Notch city
+PRODUCT_PACKAGES += \
+    HideCutout \
+    ImmersiveMode \
+    StatusBarStock \
+    StatusBarStockSysUI
+
+# Navbar Themes
+PRODUCT_PACKAGES += \
+    StockAsusOverlay \
+    NavbarAsusOverlay \
+    NavbarOnePlusOverlay \
+    NavbarOneUiOverlay \
+    NavbarTecnoCamonOverlay

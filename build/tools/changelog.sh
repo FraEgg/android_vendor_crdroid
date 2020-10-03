@@ -30,7 +30,7 @@ if [ -z $changelog_days ];then
 	changelog_days=10
 else
 	if (($changelog_days > 30 )); then
-        echo "Changelog can not generated for more then 30 days. For how many days do you want to generate changelog again? (🕑 timeout 15 seconds - default to 10 days)"
+        echo "Changelog can not generated for more than 30 days. For how many days do you want to generate changelog again? (🕑 timeout 15 seconds - default to 10 days)"
         read -r -t 15 changelog_days || changelog_days=10
 	fi
 fi
@@ -49,7 +49,7 @@ k=$(expr $i - 1)
 	# Cycle through every repo to find commits between 2 dates
 	CURRENT_PATH="$(realpath `pwd`)"
 
-    repo forall -c "GIT_LOG=\`git log --oneline --after=$After_Date --until=$Until_Date\` ; if [ ! -z \"\$GIT_LOG\" ]; then printf  '\n   * '; realpath \`pwd\` | sed 's|^$CURRENT_PATH/||' ; echo \"\$GIT_LOG\"; fi" >> $Changelog
+    repo forall -i vendor_crDroidOTA -c "GIT_LOG=\`git log --oneline --after=$After_Date --until=$Until_Date\` ; if [ ! -z \"\$GIT_LOG\" ]; then printf  '\n   * '; realpath \`pwd\` | sed 's|^$CURRENT_PATH/||' ; echo \"\$GIT_LOG\"; fi" >> $Changelog
 	echo "" >> $Changelog;
 done
 

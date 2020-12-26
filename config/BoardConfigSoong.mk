@@ -30,7 +30,9 @@ SOONG_CONFIG_NAMESPACES += lineageGlobalVars
 SOONG_CONFIG_lineageGlobalVars += \
     additional_gralloc_10_usage_bits \
     bootloader_message_offset \
+    disable_postrender_cleanup \
     has_legacy_camera_hal1 \
+    has_memfd_backport \
     ignores_ftp_pptp_conntrack_failure \
     needs_netd_direct_connect_rule \
     target_init_vendor_lib \
@@ -51,7 +53,8 @@ SOONG_CONFIG_lineageQcomVars += \
     supports_hw_fde_perf \
     uses_pre_uplink_features_netmgrd \
     uses_qcom_bsp_legacy \
-    uses_qti_camera_device
+    uses_qti_camera_device \
+    needs_camera_boottime_timestamp
 
 # Only create soong_namespace var if dealing with UM platforms to avoid breaking build for all other platforms
 ifneq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
@@ -60,7 +63,9 @@ SOONG_CONFIG_lineageQcomVars += \
 endif
 
 # Soong bool variables
+SOONG_CONFIG_lineageGlobalVars_disable_postrender_cleanup := $(TARGET_DISABLE_POSTRENDER_CLEANUP)
 SOONG_CONFIG_lineageGlobalVars_has_legacy_camera_hal1 := $(TARGET_HAS_LEGACY_CAMERA_HAL1)
+SOONG_CONFIG_lineageGlobalVars_has_memfd_backport := $(TARGET_HAS_MEMFD_BACKPORT)
 SOONG_CONFIG_lineageGlobalVars_ignores_ftp_pptp_conntrack_failure := $(TARGET_IGNORES_FTP_PPTP_CONNTRACK_FAILURE)
 SOONG_CONFIG_lineageGlobalVars_needs_netd_direct_connect_rule := $(TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE)
 SOONG_CONFIG_lineageNvidiaVars_uses_nv_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
@@ -71,6 +76,7 @@ SOONG_CONFIG_lineageQcomVars_supports_hw_fde_perf := $(TARGET_HW_DISK_ENCRYPTION
 SOONG_CONFIG_lineageQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
 SOONG_CONFIG_lineageQcomVars_uses_qcom_bsp_legacy := $(TARGET_USES_QCOM_BSP_LEGACY)
 SOONG_CONFIG_lineageQcomVars_uses_qti_camera_device := $(TARGET_USES_QTI_CAMERA_DEVICE)
+SOONG_CONFIG_lineageQcomVars_needs_camera_boottime_timestamp := $(TARGET_CAMERA_BOOTTIME_TIMESTAMP)
 
 # Set default values
 BOOTLOADER_MESSAGE_OFFSET ?= 0

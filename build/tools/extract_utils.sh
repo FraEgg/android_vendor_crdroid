@@ -1264,6 +1264,10 @@ function oat2dex() {
         export CDEXCONVERTER="$LINEAGE_ROOT"/prebuilts/tools-lineage/${HOST}-x86/bin/compact_dex_converter
     fi
 
+    if [ -z "$PATCHELF" ]; then
+        export PATCHELF="$LINEAGE_ROOT"/prebuilts/tools-lineage/${HOST}-x86/bin/patchelf
+    fi
+
     # Extract existing boot.oats to the temp folder
     if [ -z "$ARCHES" ]; then
         echo "Checking if system is odexed and locating boot.oats..."
@@ -1814,6 +1818,9 @@ function generate_prop_list_from_image() {
 
     find "$image_dir" -not -type d | sed "s#^$image_dir/##" | while read -r FILE
     do
+        if suffix_match_file ".odex" "$FILE" || suffix_match_file ".vdex" "$FILE" ; then
+            continue
+        fi
         # Skip VENDOR_SKIP_FILES since it will be re-generated at build time
         if array_contains "$FILE" "${VENDOR_SKIP_FILES[@]}"; then
             continue

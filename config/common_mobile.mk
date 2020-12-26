@@ -11,11 +11,6 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.dun.override=0
 endif
 
-# Optional packages
-PRODUCT_PACKAGES += \
-    LiveWallpapersPicker \
-    PhotoTable
-
 # AOSP packages
 PRODUCT_PACKAGES += \
     Email \
@@ -29,10 +24,22 @@ PRODUCT_PACKAGES += \
     Eleven \
     Etar \
     Jelly \
-    LockClock \
     Profiles \
-    TrebuchetQuickStep \
-    WeatherProvider
+    Seedvault
+
+ifeq ($(PRODUCT_TYPE), go)
+PRODUCT_PACKAGES += \
+    Launcher3Go
+
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Launcher3Go
+else
+PRODUCT_PACKAGES += \
+    Launcher3
+
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Launcher3
+endif
 
 # Charger
 PRODUCT_PACKAGES += \

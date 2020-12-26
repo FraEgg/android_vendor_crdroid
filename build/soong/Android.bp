@@ -51,6 +51,23 @@ cc_library_headers {
 
 // Target platform agnostic config modules
 soong_config_module_type {
+    name: "disable_postrender_cleanup",
+    module_type: "cc_defaults",
+    config_namespace: "lineageGlobalVars",
+    bool_variables: ["disable_postrender_cleanup"],
+    properties: ["cppflags"],
+}
+
+disable_postrender_cleanup {
+    name: "disable_postrender_cleanup_defaults",
+    soong_config_variables: {
+        disable_postrender_cleanup: {
+            cppflags: ["-DDISABLE_POSTRENDER_CLEANUP"],
+        },
+    },
+}
+
+soong_config_module_type {
     name: "gralloc_10_usage_bits",
     module_type: "cc_defaults",
     config_namespace: "lineageGlobalVars",
@@ -224,6 +241,23 @@ camera_in_mediaserver {
 }
 
 soong_config_module_type {
+    name: "has_memfd_backport",
+    module_type: "cc_defaults",
+    config_namespace: "lineageGlobalVars",
+    bool_variables: ["has_memfd_backport"],
+    properties: ["cppflags"],
+}
+
+has_memfd_backport {
+    name: "has_memfd_backport_defaults",
+    soong_config_variables: {
+        has_memfd_backport: {
+            cppflags: ["-DHAS_MEMFD_BACKPORT"],
+        },
+    },
+}
+
+soong_config_module_type {
     name: "bootloader_message_offset",
     module_type: "cc_defaults",
     config_namespace: "lineageGlobalVars",
@@ -314,6 +348,23 @@ qti_camera_device {
         uses_qti_camera_device: {
             cppflags: ["-DQTI_CAMERA_DEVICE"],
             shared_libs: ["vendor.qti.hardware.camera.device@1.0"],
+        },
+    },
+}
+
+soong_config_module_type {
+    name: "camera_boottime_timestamp",
+    module_type: "cc_defaults",
+    config_namespace: "lineageQcomVars",
+    bool_variables: ["needs_camera_boottime_timestamp"],
+    properties: ["cflags"],
+}
+
+camera_boottime_timestamp {
+    name: "camera_boottime_timestamp_defaults",
+    soong_config_variables: {
+        needs_camera_boottime_timestamp: {
+            cflags: ["-DTARGET_CAMERA_BOOTTIME_TIMESTAMP"],
         },
     },
 }

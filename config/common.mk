@@ -2,6 +2,7 @@
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product-if-exists, vendor/lineage/config/crdroid.mk)
 $(call inherit-product-if-exists, vendor/addons/config.mk)
+$(call inherit-product-if-exists, external/moto/faceunlock/config.mk)
 
 PRODUCT_BRAND ?= crDroidAndroid
 
@@ -51,10 +52,6 @@ PRODUCT_COPY_FILES += \
 # Copy all Lineage-specific init rc files
 $(foreach f,$(wildcard vendor/lineage/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
-
-# Copy over added mimetype supported in libcore.net.MimeUtils
-PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/lib/content-types.properties:$(TARGET_COPY_OUT_SYSTEM)/lib/content-types.properties
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
@@ -117,6 +114,10 @@ PRODUCT_PACKAGES += \
     LineageSettingsProvider \
     LineageSetupWizard \
     Updater
+
+# Config
+PRODUCT_PACKAGES += \
+    SimpleDeviceConfig
 
 # Extra tools in Lineage
 PRODUCT_PACKAGES += \
@@ -182,8 +183,7 @@ endif
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI \
-    TrebuchetQuickStep
+    SystemUI
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lineage/overlay
 DEVICE_PACKAGE_OVERLAYS += vendor/lineage/overlay/common
@@ -192,7 +192,7 @@ PRODUCT_VERSION_MAJOR = 11
 PRODUCT_VERSION_MINOR = 0
 
 # Increase CR Version with each major release.
-CR_VERSION := 7.0
+CR_VERSION := 7.1
 
 LINEAGE_VERSION := crDroidAndroid-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date +%Y%m%d)-$(LINEAGE_BUILD)-v$(CR_VERSION)-$(LUIS_ROM)
 LINEAGE_DISPLAY_VERSION := crDroidAndroid-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(LINEAGE_BUILD)-v$(CR_VERSION)-$(LUIS_ROM)

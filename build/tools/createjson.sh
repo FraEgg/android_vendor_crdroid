@@ -35,7 +35,7 @@ if [ -f $existingOTAjson ]; then
 	v_max=`echo "$version" | cut -d'.' -f1 | cut -d'v' -f2`
 	v_min=`echo "$version" | cut -d'.' -f2`
 	version=`echo $v_max.$v_min`
-	download="'$LUIS_DOWNLOAD'/'$3'"
+	download=`grep -n "\"download\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
 	buildprop=$2/system/build.prop
 	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
 	timestamp=`sed -n $linenr'p' < $buildprop | cut -d'=' -f2`
@@ -82,7 +82,7 @@ if [ -f $existingOTAjson ]; then
 			"oem": "'$oem'",
 			"device": "'$device'",
 			"filename": "'$filename'",
-			"download": "'$LUIS_DOWNLOAD'/'$3'",
+			"download": "https:'$download'/'$3'",
 			"timestamp": '$timestamp',
 			"md5": "'$md5'",
 			"size": '$size',
